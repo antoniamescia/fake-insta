@@ -12,7 +12,9 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { TopNavbarComponent } from './top-navbar/top-navbar.component';
-import { TopNavbarButtonTestComponent } from './top-navbar-button-test/top-navbar-button-test.component';
+import { NavbarDiscoverButtonComponent } from './navbar-discover-button/navbar-discover-button.component';
+import { NavbarProfileButtonComponent } from './navbar-profile-button/navbar-profile-button.component';
+import { NavbarSearchButtonComponent } from './navbar-search-button/navbar-search-button.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { TopNavbarButtonTestComponent } from './top-navbar-button-test/top-navba
     InstaButtonComponent,
     BottomNavbarComponent,
     TopNavbarComponent,
-    TopNavbarButtonTestComponent,    
+    NavbarDiscoverButtonComponent,
+    NavbarProfileButtonComponent,
+    NavbarSearchButtonComponent,    
   ],
   imports: [
     BrowserModule,
