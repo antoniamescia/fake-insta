@@ -11,6 +11,7 @@ import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {MatIconModule} from '@angular/material/icon';
     AppComponent,
     UserComponent,
     InstaButtonComponent,
-    BottomNavbarComponent,    
+    BottomNavbarComponent,
+    TopNavbarComponent,    
   ],
   imports: [
     BrowserModule,
