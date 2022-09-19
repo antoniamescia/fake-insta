@@ -10,14 +10,14 @@ import { ChatService } from '../services/chat.service';
   styleUrls: ['./chat-list.component.css']
 })
 export class ChatListComponent implements OnInit {
-  public chatService = new ChatService();
+  
   user: User = this.chatService.user; 
   user2: User = this.chatService.user2;
   user3: User = this.chatService.user3;
   chat: Chat = this.chatService.chat;
   chat2: Chat = this.chatService.chat2;
   chat3: Chat = this.chatService.chat3;
-  constructor() { }
+  constructor(public chatService:  ChatService) { }
 
   ngOnInit(): void {
   }

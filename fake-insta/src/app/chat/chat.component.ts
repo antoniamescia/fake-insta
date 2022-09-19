@@ -12,7 +12,7 @@ import { MessageService } from '../services/message.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  public chatService = new ChatService();
+ 
   user: User = this.chatService.user; 
   user2: User = this.chatService.user2;
   user3: User = this.chatService.user3;
@@ -21,7 +21,7 @@ export class ChatComponent implements OnInit {
   chat3: Chat = this.chatService.chat3;
 
 
-  constructor() { }
+  constructor(public chatService: ChatService) { }
 
   ngOnInit(): void {
   }
