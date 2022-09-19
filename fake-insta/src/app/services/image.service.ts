@@ -10,7 +10,8 @@ import { Image } from '../models/image';
 })
 
 export class ImageService {
-  private imageUrl = 'api/post';
+
+  private imageUrl = 'api/images';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -19,35 +20,32 @@ export class ImageService {
   constructor(private http: HttpClient) { }
 
   // GET image from mock DB
-  getImage(postImage: string): Observable<Image> {
-    const url = `${this.imageUrl}/${postImage}`;
+  getImage(id: number): Observable<Image> {
+    const url = `${this.imageUrl}/${id}`;
     return this.http.get<Image>(url).pipe(
-      tap((_) => console.log(`fetched image with image=${postImage}`)),
-      catchError(this.handleError<Image>(`getImage image=${postImage}`))
+      tap(_ => this.log(`fetched image id=${id}`)),
+      catchError(this.handleError<Image>(`getImage id=${id}`))
     );
   }
 
   // GET images from mock DB
   getImages(): Observable<Image[]> {
     return this.http.get<Image[]>(this.imageUrl).pipe(
-      tap((_) => console.log('fetched images')),
+      tap(_ => this.log('fetched images')),
       catchError(this.handleError<Image[]>('getImages', []))
     );
   }
 
-  handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
-
       this.log(`${operation} failed: ${error.message}`);
-
       return of(result as T);
     };
   }
 
   // TODO: implement better logging mechanism
-  log(message: string) {
+  private log(message: string) {
     console.log(`ImageService: ${message}`);
   }
-
 }
