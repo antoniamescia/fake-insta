@@ -35,6 +35,20 @@ export class ImageService {
     );
   }
 
+  // Search if search term is in the image description
+  //Capaz este search puede hacerse en el componente mismo
+
+  // searchImages(term: string) {
+  //   if (!term.trim()) {
+  //     return of([]);
+  //   }
+  //   this.getImages.subscribe(images => {
+      
+  //   }
+    
+  // }
+
+
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
