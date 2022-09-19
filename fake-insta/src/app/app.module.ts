@@ -12,6 +12,7 @@ import { UserComponent } from './user/user.component';
 import { InstaButtonComponent } from './insta-button/insta-button.component';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryMessage } from './services/in-memory-message-data.service';
+import { ChatListComponent } from './chat-list/chat-list.component';
 
 
 
@@ -23,7 +24,8 @@ import { InMemoryMessage } from './services/in-memory-message-data.service';
     ChatComponent,
 
     UserComponent,
-    InstaButtonComponent,    
+    InstaButtonComponent,
+    ChatListComponent,    
 
   ],
   imports: [

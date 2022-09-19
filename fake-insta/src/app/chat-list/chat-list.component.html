@@ -1,0 +1,26 @@
+<main class="chat">
+    <div class="container">
+        <div class="chat-container cardb">
+            <div class="row cardt" >
+                <div class="col-1"></div>
+                <div class="col-2" id="profile-thumbnail">
+                    <img src="{{ user.profilePic }}" alt="" class="avatar" />
+                </div>
+                <div class="col-7 align-content-center">
+                    <strong>{{user.firstName}}</strong>
+                    <p>{{chat.chatMessage}}</p>
+                </div>
+            </div>
+            <div class="row cardt" >
+                <div class="col-1"></div>
+                <div class="col-2" id="profile-thumbnail">
+                    <img src="{{ user3.profilePic }}" alt="" class="avatar" />
+                </div>
+                <div class="col-7 align-content-center">
+                    <strong>{{user3.firstName}}</strong>
+                    <p>{{chat3.chatMessage}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
