@@ -28,6 +28,11 @@ import { UserService } from './services/user.service';
 import { ImageService } from './services/image.service';
 import { ChatService } from './services/chat.service';
 
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: 'chats', component: ChatListComponent },
+];
 
 @NgModule({
   declarations: [
@@ -55,7 +60,11 @@ import { ChatService } from './services/chat.service';
     MatIconModule,
     HttpClientModule, 
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false })
+      InMemoryDataService, { dataEncapsulation: false }),
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [
     UserService,
