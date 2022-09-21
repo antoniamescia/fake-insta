@@ -5,8 +5,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { MessagesComponent } from './messages/messages.component';
+import { ChatComponent } from './chat/chat.component';
+
 import { UserComponent } from './user/user.component';
 import { InstaButtonComponent } from './insta-button/insta-button.component';
+
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -15,18 +20,31 @@ import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 import { NavbarDiscoverButtonComponent } from './navbar-discover-button/navbar-discover-button.component';
 import { NavbarProfileButtonComponent } from './navbar-profile-button/navbar-profile-button.component';
 import { NavbarSearchButtonComponent } from './navbar-search-button/navbar-search-button.component';
+import { HttpClientInMemoryWebApiModule, InMemoryWebApiModule } from 'angular-in-memory-web-api';
+
+import { ChatListComponent } from './chat-list/chat-list.component';
+import { InMemoryDataService } from './services/in-memory-data.service';
+import { UserService } from './services/user.service';
+import { ImageService } from './services/image.service';
+import { ChatService } from './services/chat.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+
+    MessagesComponent,
+    ChatComponent,
+
     UserComponent,
     InstaButtonComponent,
     BottomNavbarComponent,
     TopNavbarComponent,
     NavbarDiscoverButtonComponent,
     NavbarProfileButtonComponent,
-    NavbarSearchButtonComponent,    
+    NavbarSearchButtonComponent,
+    ChatListComponent,    
+
   ],
   imports: [
     BrowserModule,
@@ -34,9 +52,16 @@ import { NavbarSearchButtonComponent } from './navbar-search-button/navbar-searc
     HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule, 
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false })
   ],
-  providers: [],
+  providers: [
+    UserService,
+    ImageService,
+    ChatService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
