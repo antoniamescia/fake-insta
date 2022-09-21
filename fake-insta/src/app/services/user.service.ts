@@ -30,10 +30,11 @@ export class UserService {
 
   // GET users from mock DB
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.userUrl).pipe(
-      tap(_ => this.log('fetched users')),
-      catchError(this.handleError<User[]>('getUsers', []))
-    );
+    let users = new Array<User>();
+    this.http.get<User[]>(this.userUrl).subscribe((data) => {
+      users = data;
+    });
+    return of(users);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

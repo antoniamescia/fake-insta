@@ -11,46 +11,27 @@ import { ImageService } from '../services/image.service';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
+
 export class UserComponent implements OnInit {
 
-  users: User[] = [];
+  @Input() user!: User;
 
-  images: Image[] = [];
-
-  profilePicture?: string;
-
-  profileImagesSrc?: string[];
+  imageProfile!: Image;
 
   constructor(private userService: UserService, private imageService: ImageService) { }
 
   ngOnInit(): void {
-    this.getUsers();
-    this.getImages();
-    console.log("users", this.users);
-    console.log(this.images);
-    console.log("profilePicture",this.profilePicture);
-    
+    //this.getUser();
+    this.getImage();
   }
 
-  getUsers(): void {
-    this.userService.getUsers()
-      .subscribe(users => this.users = users);
-  }
+  // getUser(): void {
+  //   this.userService.getUser(this.user.id)
+  //     .subscribe(user => this.user = user);
+  // }
 
-  getImages(): void {
-    this.imageService.getImages()
-      .subscribe(images => this.images = images);
+  getImage(): void {
+    this.imageService.getImage(this.user.profilePic)
+      .subscribe(image => this.imageProfile = image);
   }
-
-  getProfilePicture(profilePic: number): void {
-    this.profilePicture = this.images.find(x=>x.id == profilePic)?.imageSrc;
-  }
-
-  getProfileImages(profileImages: number[]): void {
-    //var src: string[];
-    //profileImages.forEach(function (value) {
-      //src.push(this.images.find(x=>x.id == profilePic)?.imageSrc)
-    //});
-  }
-
 }

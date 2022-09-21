@@ -12,6 +12,7 @@ import { ImageComponent } from './image/image.component';
 import { PostComponent } from './post/post.component';
 import { UserService } from './services/user.service';
 import { ImageService } from './services/image.service';
+import { PostScrollComponent } from './post-scroll/post-scroll.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ImageService } from './services/image.service';
     UserComponent,
     InstaButtonComponent,
     PostComponent,
-    ImageComponent
+    ImageComponent,
+    PostScrollComponent
   ],
   imports: [
     BrowserModule,

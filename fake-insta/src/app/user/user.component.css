@@ -7,13 +7,12 @@
 #profile-thumbnail{
     width: 32pt;
     height: 32pt;
-    background-color: red;
-    border-radius: 100%;
 }
 
 .avatar{
-    width: 28pt;
-    height:auto;
+    width: 32pt;
+    height: 32pt;
+    border-radius: 100%;
 }
 
 .profile-info{

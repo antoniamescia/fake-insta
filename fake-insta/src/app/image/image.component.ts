@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ImageService } from '../services/image.service';
 
 import { Image } from '../models/image';
@@ -8,19 +8,21 @@ import { Image } from '../models/image';
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.css']
 })
+
 export class ImageComponent implements OnInit {
 
-  images: Image[] = [];
+  @Input() imageId!: number;
 
-  constructor(private imageService: ImageService) { }
+  selectedImage!: Image;
+
+  constructor(private imageService: ImageService,) { }
 
   ngOnInit(): void {
-    this.getImages();
+    this.getImage();
   }
 
-  getImages(): void {
-    this.imageService.getImages()
-      .subscribe(images => this.images = images);
+  getImage(): void {
+    this.imageService.getImage(this.imageId)
+      .subscribe(image => this.selectedImage = image);
   }
-
 }

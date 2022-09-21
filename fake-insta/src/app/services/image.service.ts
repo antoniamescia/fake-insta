@@ -28,14 +28,6 @@ export class ImageService {
     );
   }
 
-  // GET images from mock DB
-  getImages(): Observable<Image[]> {
-    return this.http.get<Image[]>(this.imageUrl).pipe(
-      tap(_ => this.log('fetched images')),
-      catchError(this.handleError<Image[]>('getImages', []))
-    );
-  }
-
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
