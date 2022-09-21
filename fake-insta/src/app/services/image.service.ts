@@ -11,7 +11,6 @@ import { Image } from '../models/image';
 
 export class ImageService {
   private imageUrl = 'api/images';
-  private imagesByCategory = 'api/imagesByCategory';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -31,25 +30,23 @@ export class ImageService {
   // GET images from mock DB
   getImages(): Observable<Image[]> {
     return this.http.get<Image[]>(this.imageUrl).pipe(
-      tap((_) => console.log('fetched images')),
+      tap(_ => this.log('fetched images')),
       catchError(this.handleError<Image[]>('getImages', []))
     );
   }
 
 
-  handleError<T>(operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
-
       this.log(`${operation} failed: ${error.message}`);
-
       return of(result as T);
     };
   }
 
   // TODO: implement better logging mechanism
-  log(message: string) {
+  private log(message: string) {
     console.log(`ImageService: ${message}`);
   }
-
 }
+
