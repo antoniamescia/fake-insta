@@ -10,7 +10,8 @@ import { Image } from '../models/image';
 })
 
 export class ImageService {
-  private imageUrl = 'api/post';
+  private imageUrl = 'api/images';
+  private imagesByCategory = 'api/imagesByCategory';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -19,11 +20,11 @@ export class ImageService {
   constructor(private http: HttpClient) { }
 
   // GET image from mock DB
-  getImage(postImage: string): Observable<Image> {
-    const url = `${this.imageUrl}/${postImage}`;
+  getImage(id: number): Observable<Image> {
+    const url = `${this.imageUrl}/${id}`;
     return this.http.get<Image>(url).pipe(
-      tap((_) => console.log(`fetched image with image=${postImage}`)),
-      catchError(this.handleError<Image>(`getImage image=${postImage}`))
+      tap((_) => console.log(`fetched image with image=${id}`)),
+      catchError(this.handleError<Image>(`getImage image=${id}`))
     );
   }
 
@@ -34,19 +35,6 @@ export class ImageService {
       catchError(this.handleError<Image[]>('getImages', []))
     );
   }
-
-  // Search if search term is in the image description
-  //Capaz este search puede hacerse en el componente mismo
-
-  // searchImages(term: string) {
-  //   if (!term.trim()) {
-  //     return of([]);
-  //   }
-  //   this.getImages.subscribe(images => {
-      
-  //   }
-    
-  // }
 
 
   handleError<T>(operation = 'operation', result?: T) {

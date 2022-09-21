@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { SearchService } from './../services/search.service';
+import { ImageService } from './../services/image.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { debounceTime, Observable, Subject, switchMap } from 'rxjs';
+import { Image } from '../models/image';
 
 @Component({
   selector: 'app-search-bar',
@@ -7,9 +11,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchBarComponent implements OnInit {
 
-  constructor() { }
+  search$!: Observable<{}>;
+  @Output() event = new EventEmitter<Image[]>();
+  //searchResults: Image[] = [];
+
+  constructor(private searchService:SearchService) { }
 
   ngOnInit(): void {
+
+    this.searchImages2('');
+  }
+
+  // Necesito ashuda jose
+  searchImages(term: string) {
+    this.searchService.searchImages(term);
+    
+  }
+
+  searchImages2(term: string) {
+      this.searchService.searchImages2(term).subscribe((data) => {
+      this.event.emit(data);
+      //console.log(this.searchResults);
+    });
   }
 
 }
