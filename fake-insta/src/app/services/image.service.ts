@@ -10,7 +10,6 @@ import { Image } from '../models/image';
 })
 
 export class ImageService {
-
   private imageUrl = 'api/images';
 
   httpOptions = {
@@ -23,8 +22,8 @@ export class ImageService {
   getImage(id: number): Observable<Image> {
     const url = `${this.imageUrl}/${id}`;
     return this.http.get<Image>(url).pipe(
-      tap(_ => this.log(`fetched image id=${id}`)),
-      catchError(this.handleError<Image>(`getImage id=${id}`))
+      tap((_) => console.log(`fetched image with image=${id}`)),
+      catchError(this.handleError<Image>(`getImage image=${id}`))
     );
   }
 
@@ -35,6 +34,7 @@ export class ImageService {
       catchError(this.handleError<Image[]>('getImages', []))
     );
   }
+
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -49,3 +49,4 @@ export class ImageService {
     console.log(`ImageService: ${message}`);
   }
 }
+

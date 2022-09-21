@@ -1,3 +1,4 @@
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,6 +12,9 @@ import { ChatComponent } from './chat/chat.component';
 
 import { UserComponent } from './user/user.component';
 import { InstaButtonComponent } from './insta-button/insta-button.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { SearchViewComponent } from './search-view/search-view.component';
+import { InMemoryDataService } from './services/in-memory-data.service';
 
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 
@@ -43,18 +47,18 @@ const appRoutes: Routes = [
 
     UserComponent,
     InstaButtonComponent,
+    SearchBarComponent,
+    SearchViewComponent,    
     BottomNavbarComponent,
     TopNavbarComponent,
     NavbarDiscoverButtonComponent,
     NavbarProfileButtonComponent,
     NavbarSearchButtonComponent,
     ChatListComponent,    
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
