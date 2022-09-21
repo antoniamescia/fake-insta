@@ -1,9 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+
 import { Chat } from '../models/chat';
-import { User } from '../models/user';
+import { Image } from '../models/image';
 import { ChatService } from '../services/chat.service';
-import { InMemoryMessage } from '../services/in-memory-message-data.service';
-import { MessageService } from '../services/message.service';
+import { ImageService } from '../services/image.service';
+
+
 
 
 @Component({
@@ -12,18 +15,42 @@ import { MessageService } from '../services/message.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
- 
-  user: User = this.chatService.user; 
-  user2: User = this.chatService.user2;
-  user3: User = this.chatService.user3;
-  chat: Chat = this.chatService.chat;
-  chat2: Chat = this.chatService.chat2;
-  chat3: Chat = this.chatService.chat3;
-
-
-  constructor(public chatService: ChatService) { }
-
+  
+  constructor(public chatService: ChatService, public imageService: ImageService) { }
+  
+  chats: Chat[] = []; 
+  //url: string = "";
+  images: Image[] = [];
+   
   ngOnInit(): void {
+    this.getChat();
+    this.getImages();
   }
-
+  
+  getChat(): void {
+    this.chatService.getChats()
+      .subscribe(chats => this.chats = chats);
+  }
+  isSender(id: number):boolean {       
+    if(id == 1) {
+      return true;
+    }
+     else { 
+      return false;
+    } 
+  }
+  isFirst(chatId: string): boolean { 
+    if(chatId === "abc1234") {
+      return true;
+    }
+     else { 
+      return false;
+    } 
+  }
+  getImages(): void {
+    this.imageService.getImages()
+      .subscribe(images => this.images = images);
+  }
+  
+  
 }

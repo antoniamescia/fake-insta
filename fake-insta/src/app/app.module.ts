@@ -10,9 +10,13 @@ import { ChatComponent } from './chat/chat.component';
 
 import { UserComponent } from './user/user.component';
 import { InstaButtonComponent } from './insta-button/insta-button.component';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryMessage } from './services/in-memory-message-data.service';
+import { HttpClientInMemoryWebApiModule, InMemoryWebApiModule } from 'angular-in-memory-web-api';
+
 import { ChatListComponent } from './chat-list/chat-list.component';
+import { InMemoryDataService } from './services/in-memory-data.service';
+import { UserService } from './services/user.service';
+import { ImageService } from './services/image.service';
+import { ChatService } from './services/chat.service';
 
 
 
@@ -32,9 +36,14 @@ import { ChatListComponent } from './chat-list/chat-list.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule, 
-    InMemoryWebApiModule.forRoot(InMemoryMessage)
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false })
   ],
-  providers: [],
+  providers: [
+    UserService,
+    ImageService,
+    ChatService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

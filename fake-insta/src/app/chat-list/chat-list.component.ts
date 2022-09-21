@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatComponent } from '../chat/chat.component';
 import { Chat } from '../models/chat';
-import { User } from '../models/user';
+import { Image } from '../models/image';
 import { ChatService } from '../services/chat.service';
+import { ImageService } from '../services/image.service';
 
 @Component({
   selector: 'app-chat-list',
@@ -10,16 +11,31 @@ import { ChatService } from '../services/chat.service';
   styleUrls: ['./chat-list.component.css']
 })
 export class ChatListComponent implements OnInit {
-  
-  user: User = this.chatService.user; 
-  user2: User = this.chatService.user2;
-  user3: User = this.chatService.user3;
-  chat: Chat = this.chatService.chat;
-  chat2: Chat = this.chatService.chat2;
-  chat3: Chat = this.chatService.chat3;
-  constructor(public chatService:  ChatService) { }
+  chats: Chat[] = [];
+  images: Image[] = [];
+  constructor(public chatService:  ChatService, public imageService: ImageService) { }
 
   ngOnInit(): void {
+    this.getChat();
+    this.getImages();
+  }
+  getChat(): void {
+    this.chatService.getChats()
+      .subscribe(chats => this.chats = chats);
+  }
+  isSender(id: number):boolean {       
+    if(id == 1) {
+      return true;
+    }
+     else { 
+      return false;
+    } 
+  }
+
+  getImages(): void {
+    this.imageService.getImages()
+      .subscribe(images => this.images = images);
   }
   
+
 }
