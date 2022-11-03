@@ -1,16 +1,25 @@
-import { UserService } from './../services/user.service';
 import { Component, Input, OnInit } from '@angular/core';
+
+import { Image } from '../models/image';
 import { User } from '../models/user';
 import { Image } from '../models/image';
 import { ImageService } from '../services/image.service';
 
+
+import { UserService } from './../services/user.service';
+import { ImageService } from '../services/image.service';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
+
 export class UserComponent implements OnInit {
+
+  @Input() user!: User;
+
+  imageProfile!: Image;
 
   users: User[] = [];
 
@@ -52,4 +61,8 @@ export class UserComponent implements OnInit {
     //});
   }
 
+  getImage(): void {
+    this.imageService.getImage(this.user.profilePic)
+      .subscribe(image => this.imageProfile = image);
+  }
 }

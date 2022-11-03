@@ -1,18 +1,18 @@
 .profile{
     display: flex;
+    align-items: center;
     gap:10pt;
 }
 
-.profile-thumbnail{
-    width: 30pt;
-    height: 30pt;
+#profile-thumbnail{
+    width: 32pt;
+    height: 32pt;
 }
 
 .avatar{
-    width: 28pt;
-    height:auto;
-
-    border-radius: 50%;
+    width: 32pt;
+    height: 32pt;
+    border-radius: 100%;
 }
 
 .profile-info{
@@ -28,12 +28,10 @@
     font-weight: 1000;
     letter-spacing: 0em;
     text-align: left;
+    margin: 0;
 }
 
 .username {
     font-size: 11pt;
+    margin: 0;
 }
-
-
-
-

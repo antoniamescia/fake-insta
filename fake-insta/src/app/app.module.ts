@@ -2,6 +2,8 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './../app/services/in-memory-data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +14,11 @@ import { ChatComponent } from './chat/chat.component';
 
 import { UserComponent } from './user/user.component';
 import { InstaButtonComponent } from './insta-button/insta-button.component';
+import { ImageComponent } from './image/image.component';
+import { PostComponent } from './post/post.component';
+import { UserService } from './services/user.service';
+import { ImageService } from './services/image.service';
+import { PostScrollComponent } from './post-scroll/post-scroll.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SearchViewComponent } from './search-view/search-view.component';
 import { InMemoryDataService } from './services/in-memory-data.service';
@@ -44,9 +51,11 @@ const appRoutes: Routes = [
 
     MessagesComponent,
     ChatComponent,
-
     UserComponent,
     InstaButtonComponent,
+    PostComponent,
+    ImageComponent,
+    PostScrollComponent
     SearchBarComponent,
     SearchViewComponent,    
     BottomNavbarComponent,
@@ -59,6 +68,13 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false })
+  ],
+  providers: [
+    UserService,
+    ImageService
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
