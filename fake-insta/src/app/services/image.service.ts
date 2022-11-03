@@ -10,7 +10,6 @@ import { Image } from '../models/image';
 })
 
 export class ImageService {
-
   private imageUrl = 'api/images';
 
   httpOptions = {
@@ -23,8 +22,17 @@ export class ImageService {
   getImage(id: number): Observable<Image> {
     const url = `${this.imageUrl}/${id}`;
     return this.http.get<Image>(url).pipe(
-      tap(_ => this.log(`fetched image id=${id}`)),
-      catchError(this.handleError<Image>(`getImage id=${id}`))
+
+      tap((_) => console.log(`fetched image with image=${id}`)),
+      catchError(this.handleError<Image>(`getImage image=${id}`))
+    );
+  }
+
+  // GET images from mock DB
+  getImages(): Observable<Image[]> {
+    return this.http.get<Image[]>(this.imageUrl).pipe(
+      tap(_ => this.log('fetched images')),
+      catchError(this.handleError<Image[]>('getImages', []))
     );
   }
 
